@@ -11,14 +11,7 @@
 #include <algorithm>
 using namespace cv;
 using namespace std;
-//
-// êîíâåðòèðóåò èçîáðàæåíèå â HSV
-// è ïîçâîëÿåò ïîäîáðàòü ïàðàìåòðû
-// Hmin, Hmax, Smin, Smax, Vmin, Vmax
-// äëÿ âûäåëåíèÿ íóæíîãî îáúåêòà
-//
-// robocraft.ru
-//
+
 
 IplImage* image = 0;
 IplImage* dst = 0;
@@ -28,16 +21,16 @@ IplImage *sobelY;
 IplImage *tempX;
 IplImage *tempY;
 
-// äëÿ õðàíåíèÿ êàíàëîâ HSV
+//HSV
 IplImage* hsv = 0;
 IplImage* h_plane = 0;
 IplImage* s_plane = 0;
 IplImage* v_plane = 0;
-// äëÿ õðàíåíèÿ êàíàëîâ HSV ïîñëå ïðåîáðàçîâàíèÿ
+
 IplImage* h_range = 0;
 IplImage* s_range = 0;
 IplImage* v_range = 0;
-// äëÿ õðàíåíèÿ ñóììàðíîé êàðòèíêè
+
 IplImage* hsv_and = 0;
 
 int Hmin = 0;
@@ -52,7 +45,7 @@ int Vmax = 256;
 int HSVmax = 256;
 
 //
-// ôóíêöèè-îáðàáîò÷èêè ïîëçóíêîâ
+
 //
 void myTrackbarHmin(int pos) {
 	Hmin = pos;
@@ -88,16 +81,16 @@ int main(int argc, char* argv[])
 {
 
 	
-	// èìÿ êàðòèíêè çàäà¸òñÿ ïåðâûì ïàðàìåòðîì
-	char* filename1 = "E:\\infarction_foto\\123\\Ãðóïïà 3\\îïûò áàêòåðèè 15\\changed\\P1010054.tif";
+	
+	char* filename1 = "";
 	char* filename = argc == 2 ? argv[1] : filename1;
-	// ïîëó÷àåì êàðòèíêó
+	
 	image = cvLoadImage(filename, 1);
 
 	printf("[i] image: %s\n", filename);
 	assert(image != 0);
 
-	// ñîçäà¸ì êàðòèíêè
+	
 	hsv = cvCreateImage(cvGetSize(image), IPL_DEPTH_8U, 3);
 	h_plane = cvCreateImage(cvGetSize(image), IPL_DEPTH_8U, 1);
 	s_plane = cvCreateImage(cvGetSize(image), IPL_DEPTH_8U, 1);
@@ -106,14 +99,14 @@ int main(int argc, char* argv[])
 	s_range = cvCreateImage(cvGetSize(image), IPL_DEPTH_8U, 1);
 	v_range = cvCreateImage(cvGetSize(image), IPL_DEPTH_8U, 1);
 	hsv_and = cvCreateImage(cvGetSize(image), IPL_DEPTH_8U, 1);
-	//  êîíâåðòèðóåì â HSV 
+	//   HSV 
 	cvCvtColor(image, hsv, CV_BGR2HSV);
-	// ðàçáèâàåì íà îòåëüíûå êàíàëû
+	
 	cvSplit(hsv, h_plane, s_plane, v_plane, 0);
 
 	//
-	// îïðåäåëÿåì ìèíèìàëüíîå è ìàêñèìàëüíîå çíà÷åíèå
-	// ó êàíàëîâ HSV
+	// 
+	//  HSV
 	double framemin = 0;
 	double framemax = 0;
 
@@ -130,7 +123,7 @@ int main(int argc, char* argv[])
 	Vmin = framemin;
 	Vmax = framemax;
 
-	// îêíà äëÿ îòîáðàæåíèÿ êàðòèíêè
+	
 	//cvNamedWindow("original", CV_WINDOW_AUTOSIZE);
 	//cvNamedWindow("H", CV_WINDOW_AUTOSIZE);
 	//cvNamedWindow("S", CV_WINDOW_AUTOSIZE);
@@ -149,7 +142,7 @@ int main(int argc, char* argv[])
 	cvSetTrackbarPos("Vmax", "V range", 254);
 	cvSetTrackbarPos("Vmin", "V range", 118);
 	//
-	// ðàçìåñòèì îêíà ïî ðàáî÷åìó ñòîëó
+	
 	//
 	if (image->width <1920 / 4 && image->height<1080 / 2) {
 		cvMoveWindow("original", 0, 0);
@@ -164,60 +157,28 @@ int main(int argc, char* argv[])
 
 	while (true) {
 
-		// ïîêàçûâàåì êàðòèíêó
-		//cvShowImage("original", image);
-
-		//cvShowImage("H", h_plane);
-		//cvShowImage("S", s_plane);
-		//cvShowImage("V", v_plane);
-
-		//cvShowImage("H range", h_range);
-		//cvShowImage("S range", s_range);
+		
+		
 		cvShowImage("V range", v_range);
 
-		// ñêëàäûâàåì 
+		
 		cvAnd(h_range, s_range, hsv_and);
 		cvAnd(hsv_and, v_range, hsv_and);
 
 		
 
 
-		//cvShowImage("hsv and", hsv_and);
+	
 		char* str = "F:\\saved_1\\1.tif";
 
 
-		/*sobelX = cvCreateImage(cvSize(hsv_and->width, hsv_and->height), 8, 1);
-		sobelY = cvCreateImage(cvSize(hsv_and->width, hsv_and->height), 8, 1);
-
-		// Create Temp Images
-		tempX = cvCreateImage(cvSize(hsv_and->width, hsv_and->height), IPL_DEPTH_16S, 1);
-		tempY = cvCreateImage(cvSize(hsv_and->width, hsv_and->height), IPL_DEPTH_16S, 1);
-
-		cvSobel(hsv_and, tempX, 1, 0, 3);
-		cvSobel(hsv_and, tempY, 0, 1, 3);
-		
-		// Convert to the Absolute Value
-		cvConvertScaleAbs(tempX, sobelX, 1, 0);
-		cvConvertScaleAbs(tempY, sobelY, 1, 0);
-		addWeighted(tempX, 0.5, tempY, 0.5, 0, grad);
-		*/
 
 		
 									 // don't forget to free the string after finished using it
 		
-		
-
-
-		//cvSaveImage(writable, s_plane);
-		
-
-		
-		
-	
-
 		char c = cvWaitKey(33);
-		if (c == 27) { // åñëè íàæàòà ESC - âûõîäèì
-			//cvSaveImage("F:\\saved\\", hsv_and);
+		if (c == 27) { 
+			
 			break;
 		}
 
@@ -240,7 +201,7 @@ int main(int argc, char* argv[])
 	
 	
 
-	// îñâîáîæäàåì ðåñóðñû
+	
 	cvReleaseImage(&image);
 	cvReleaseImage(&hsv);
 	cvReleaseImage(&h_plane);
@@ -250,7 +211,7 @@ int main(int argc, char* argv[])
 	cvReleaseImage(&s_range);
 	cvReleaseImage(&v_range);
 	cvReleaseImage(&hsv_and);
-	// óäàëÿåì îêíà
+	
 	cvDestroyAllWindows();
 	return 0;
 }
