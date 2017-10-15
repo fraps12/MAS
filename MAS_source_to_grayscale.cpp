@@ -29,10 +29,10 @@ IplImage* image1 = 0;
 IplImage* gray = 0;
 IplImage* bin = 0;
 IplImage* dst1 = 0;
-//Сверху контуры
+//Г‘ГўГҐГ°ГµГі ГЄГ®Г­ГІГіГ°Г»
 IplImage* image = 0;
 
-// для хранения каналов HSV
+// Г¤Г«Гї ГµГ°Г Г­ГҐГ­ГЁГї ГЄГ Г­Г Г«Г®Гў HSV
 IplImage* hsv = 0;
 IplImage* h_plane = 0;
 IplImage* s_plane = 0;
@@ -183,33 +183,33 @@ int main(int argc, const char** argv)
 
 					/*gray = cvCreateImage(cvGetSize(kekable), IPL_DEPTH_8U, 1);
 					bin = cvCreateImage(cvGetSize(kekable), IPL_DEPTH_8U, 1);*/
-					// клонируем
+					// ГЄГ«Г®Г­ГЁГ°ГіГҐГ¬
 
-					// окно для отображения картинки
+					// Г®ГЄГ­Г® Г¤Г«Гї Г®ГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГї ГЄГ Г°ГІГЁГ­ГЄГЁ
 
 
-					// преобразуем в градации серого
+					// ГЇГ°ГҐГ®ГЎГ°Г Г§ГіГҐГ¬ Гў ГЈГ°Г Г¤Г Г¶ГЁГЁ Г±ГҐГ°Г®ГЈГ®
 					//cvCvtColor(kekable, gray, CV_RGB2GRAY);
 
-					// преобразуем в двоичное
+					// ГЇГ°ГҐГ®ГЎГ°Г Г§ГіГҐГ¬ Гў Г¤ГўГ®ГЁГ·Г­Г®ГҐ
 					//cvInRangeS(gray, cvScalar(40), cvScalar(150), bin);
 
 					CvMemStorage* storage = cvCreateMemStorage(0);
 					CvSeq* contours = 0;
 
-					// находим контуры
+					// Г­Г ГµГ®Г¤ГЁГ¬ ГЄГ®Г­ГІГіГ°Г»
 					/*int contoursCont = cvFindContours(bin, storage, &contours, sizeof(CvContour), CV_RETR_LIST, CV_CHAIN_APPROX_SIMPLE, cvPoint(0, 0));
 
-					// нарисуем контуры
+					// Г­Г Г°ГЁГ±ГіГҐГ¬ ГЄГ®Г­ГІГіГ°Г»
 					for (CvSeq* seq0 = contours; seq0 != 0; seq0 = seq0->h_next) {
-						cvDrawContours(dst1, seq0, CV_RGB(255, 216, 0), CV_RGB(0, 0, 250), 0, 1, 8); // рисуем контур
+						cvDrawContours(dst1, seq0, CV_RGB(255, 216, 0), CV_RGB(0, 0, 250), 0, 1, 8); // Г°ГЁГ±ГіГҐГ¬ ГЄГ®Г­ГІГіГ°
 					}
 					*/
 
 
 
 					//cv::Mat src = cv::imread(folder + filenames[i]);
-					// сохраняем
+					// Г±Г®ГµГ°Г Г­ГїГҐГ¬
 			Mat fullImageHSV;
 			cvtColor(src, fullImageHSV, CV_BGR2GRAY);
 
@@ -312,7 +312,7 @@ int main(int argc, const char** argv)
 					
 				
 
-			std::string str = "E:\\infarction_foto\\123\\Группа 3\\опыт бактерии 15\\changed\\" + filenames[i];
+			std::string str = "E:\\infarction_foto\\123\\ГѓГ°ГіГЇГЇГ  3\\Г®ГЇГ»ГІ ГЎГ ГЄГІГҐГ°ГЁГЁ 15\\changed\\" + filenames[i];
 			char * writable = new char[str.size() + 1];
 			std::copy(str.begin(), str.end(), writable);
 			writable[str.size()] = '\0'; // don't forget the terminating 0
@@ -330,13 +330,13 @@ int main(int argc, const char** argv)
 
 
 			char c = cvWaitKey(33);
-			if (c == 27) { // если нажата ESC - выходим
+			if (c == 27) { // ГҐГ±Г«ГЁ Г­Г Г¦Г ГІГ  ESC - ГўГ»ГµГ®Г¤ГЁГ¬
 				break;
 
 			}
 
 
-			// освобождаем ресурсы
+			// Г®Г±ГўГ®ГЎГ®Г¦Г¤Г ГҐГ¬ Г°ГҐГ±ГіГ°Г±Г»
 			cvReleaseImage(&image);
 			cvReleaseImage(&hsv);
 			cvReleaseImage(&h_plane);
@@ -345,11 +345,11 @@ int main(int argc, const char** argv)
 
 
 
-			// удаляем окна
+			// ГіГ¤Г Г«ГїГҐГ¬ Г®ГЄГ­Г 
 			cvDestroyAllWindows();
 
 
-		}// скобка цикла исходных файлов
+		}// Г±ГЄГ®ГЎГЄГ  Г¶ГЁГЄГ«Г  ГЁГ±ГµГ®Г¤Г­Г»Гµ ГґГ Г©Г«Г®Гў
 
 		
 	}
@@ -358,16 +358,16 @@ int main(int argc, const char** argv)
 
 /*int main(int argc, char* argv[])
 {
-	// имя картинки задаётся первым параметром
+	// ГЁГ¬Гї ГЄГ Г°ГІГЁГ­ГЄГЁ Г§Г Г¤Г ВёГІГ±Гї ГЇГҐГ°ГўГ»Г¬ ГЇГ Г°Г Г¬ГҐГІГ°Г®Г¬
 	char* filename = argc == 2 ? argv[1] : "infarction.jpg";
 	char* filename1 = argc == 2 ? argv[2] : "infarction.bmp";
-	// получаем картинку
+	// ГЇГ®Г«ГіГ·Г ГҐГ¬ ГЄГ Г°ГІГЁГ­ГЄГі
 	image = cvLoadImage(filename, 1);
 	
-	//Получаем изображение для контурирования
+	//ГЏГ®Г«ГіГ·Г ГҐГ¬ ГЁГ§Г®ГЎГ°Г Г¦ГҐГ­ГЁГҐ Г¤Г«Гї ГЄГ®Г­ГІГіГ°ГЁГ°Г®ГўГ Г­ГЁГї
 	
 	image1 = cvLoadImage(filename1, 1);
-	// находим контуры
+	// Г­Г ГµГ®Г¤ГЁГ¬ ГЄГ®Г­ГІГіГ°Г»
 	
 	
 	
@@ -375,26 +375,26 @@ int main(int argc, const char** argv)
 	printf("[i] image: %s\n", filename);
 	assert(image != 0);
 
-	// создаём картинки
+	// Г±Г®Г§Г¤Г ВёГ¬ ГЄГ Г°ГІГЁГ­ГЄГЁ
 	hsv = cvCreateImage(cvGetSize(image), IPL_DEPTH_8U, 3);
 	h_plane = cvCreateImage(cvGetSize(image), IPL_DEPTH_8U, 1);
 	s_plane = cvCreateImage(cvGetSize(image), IPL_DEPTH_8U, 1);
 	v_plane = cvCreateImage(cvGetSize(image), IPL_DEPTH_8U, 1);
 	
-	//  конвертируем в HSV 
+	//  ГЄГ®Г­ГўГҐГ°ГІГЁГ°ГіГҐГ¬ Гў HSV 
 	cvCvtColor(image, hsv, CV_BGR2HSV);
-	// разбиваем на отельные каналы
+	// Г°Г Г§ГЎГЁГўГ ГҐГ¬ Г­Г  Г®ГІГҐГ«ГјГ­Г»ГҐ ГЄГ Г­Г Г«Г»
 	cvSplit(hsv, h_plane, s_plane, v_plane, 0);
 
 	//
-	// определяем минимальное и максимальное значение
-	// у каналов HSV
+	// Г®ГЇГ°ГҐГ¤ГҐГ«ГїГҐГ¬ Г¬ГЁГ­ГЁГ¬Г Г«ГјГ­Г®ГҐ ГЁ Г¬Г ГЄГ±ГЁГ¬Г Г«ГјГ­Г®ГҐ Г§Г­Г Г·ГҐГ­ГЁГҐ
+	// Гі ГЄГ Г­Г Г«Г®Гў HSV
 	double framemin = 0;
 	double framemax = 0;
 
 	
 
-	// окна для отображения картинки
+	// Г®ГЄГ­Г  Г¤Г«Гї Г®ГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГї ГЄГ Г°ГІГЁГ­ГЄГЁ
 	cvNamedWindow("original", CV_WINDOW_AUTOSIZE);
 	cvNamedWindow("H", CV_WINDOW_AUTOSIZE);
 	cvNamedWindow("S", CV_WINDOW_AUTOSIZE);
@@ -405,7 +405,7 @@ int main(int argc, const char** argv)
 	
 
 	//
-	// разместим окна по рабочему столу
+	// Г°Г Г§Г¬ГҐГ±ГІГЁГ¬ Г®ГЄГ­Г  ГЇГ® Г°Г ГЎГ®Г·ГҐГ¬Гі Г±ГІГ®Г«Гі
 	//
 	if (image->width <1920 / 4 && image->height<1080 / 2) {
 		cvMoveWindow("original", 0, 0);
@@ -419,26 +419,26 @@ int main(int argc, const char** argv)
 
 	gray = cvCreateImage(cvGetSize(image1), IPL_DEPTH_8U, 1);
 	bin = cvCreateImage(cvGetSize(image1), IPL_DEPTH_8U, 1);
-	// клонируем
+	// ГЄГ«Г®Г­ГЁГ°ГіГҐГ¬
 	dst1 = cvCloneImage(image1);
-	// окно для отображения картинки
+	// Г®ГЄГ­Г® Г¤Г«Гї Г®ГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГї ГЄГ Г°ГІГЁГ­ГЄГЁ
 	
 
-	// преобразуем в градации серого
+	// ГЇГ°ГҐГ®ГЎГ°Г Г§ГіГҐГ¬ Гў ГЈГ°Г Г¤Г Г¶ГЁГЁ Г±ГҐГ°Г®ГЈГ®
 	cvCvtColor(image1, gray, CV_RGB2GRAY);
 
-	// преобразуем в двоичное
+	// ГЇГ°ГҐГ®ГЎГ°Г Г§ГіГҐГ¬ Гў Г¤ГўГ®ГЁГ·Г­Г®ГҐ
 	cvInRangeS(gray, cvScalar(40), cvScalar(150), bin);
 
 	CvMemStorage* storage = cvCreateMemStorage(0);
 	CvSeq* contours = 0;
 
-	// находим контуры
+	// Г­Г ГµГ®Г¤ГЁГ¬ ГЄГ®Г­ГІГіГ°Г»
 	int contoursCont = cvFindContours(bin, storage, &contours, sizeof(CvContour), CV_RETR_LIST, CV_CHAIN_APPROX_SIMPLE, cvPoint(0, 0));
 
-	// нарисуем контуры
+	// Г­Г Г°ГЁГ±ГіГҐГ¬ ГЄГ®Г­ГІГіГ°Г»
 	for (CvSeq* seq0 = contours; seq0 != 0; seq0 = seq0->h_next) {
-		cvDrawContours(dst1, seq0, CV_RGB(255, 216, 0), CV_RGB(0, 0, 250), 0, 1, 8); // рисуем контур
+		cvDrawContours(dst1, seq0, CV_RGB(255, 216, 0), CV_RGB(0, 0, 250), 0, 1, 8); // Г°ГЁГ±ГіГҐГ¬ ГЄГ®Г­ГІГіГ°
 	}
 
 	
@@ -446,7 +446,7 @@ int main(int argc, const char** argv)
 
 	while (true) {
 
-		// показываем картинку
+		// ГЇГ®ГЄГ Г§Г»ГўГ ГҐГ¬ ГЄГ Г°ГІГЁГ­ГЄГі
 		cvShowImage("original", image);
 
 		cvShowImage("H", h_plane);
@@ -455,12 +455,12 @@ int main(int argc, const char** argv)
 		cvShowImage("Contours", dst1);
 		
 
-		// сохраняем		
+		// Г±Г®ГµГ°Г Г­ГїГҐГ¬		
 		cvSaveImage("2_1.bmp", s_plane);
 		
 
 		char c = cvWaitKey(33);
-		if (c == 27) { // если нажата ESC - выходим
+		if (c == 27) { // ГҐГ±Г«ГЁ Г­Г Г¦Г ГІГ  ESC - ГўГ»ГµГ®Г¤ГЁГ¬
 			break;
 		}
 	}
@@ -469,7 +469,7 @@ int main(int argc, const char** argv)
 	printf("[S] %d x %d\n", Smin, Smax);
 	printf("[V] %d x %d\n", Vmin, Vmax);
 
-	// освобождаем ресурсы
+	// Г®Г±ГўГ®ГЎГ®Г¦Г¤Г ГҐГ¬ Г°ГҐГ±ГіГ°Г±Г»
 	cvReleaseImage(&image);
 	cvReleaseImage(&hsv);
 	cvReleaseImage(&h_plane);
@@ -481,7 +481,7 @@ int main(int argc, const char** argv)
 	cvReleaseImage(&hsv_and);
 	cvReleaseImage(&image1);
 
-	// удаляем окна
+	// ГіГ¤Г Г«ГїГҐГ¬ Г®ГЄГ­Г 
 	cvDestroyAllWindows();
 	return 0;
 }
