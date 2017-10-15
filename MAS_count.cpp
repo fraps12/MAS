@@ -12,46 +12,7 @@
 
 using namespace cv;
 using namespace std;
-/*
-int main() {
 
-
-	Mat src;
-	
-
-	string filepath = "F:\\infarction_foto\\1\\calculated_cut\\6-2b.tiff";
-	src = imread(filepath);
-
-	if (!src.data)
-	{
-		return -1;
-	}
-
-	int count_black = 0;
-	int count_white = 0;
-	for (int y = 0; y < src.rows; y++) {
-		for (int x = 0; x < src.cols; x++) {
-			if (src.at<cv::Vec3b>(y, x) == cv::Vec3b(255, 255, 255)) {
-				count_white++;
-				
-				
-			}
-			else if (src.at<cv::Vec3b>(y, x) == cv::Vec3b(0, 0, 0)) {
-				count_black++;
-				
-			}
-		}
-	}
-	//cout << count_white << "infarction area" << "           " << endl;
-	
-	ofstream strm("F:\\infarction_foto\\1\\area_cut\\6-2b.txt");
-	strm << count_white << "        " << "infarction area" << endl;
-	//strm << count_black << "           " << "healthy area" << endl;
-	
-	return 0;
-
-
-}*/
 
 int readFilenames(std::vector<string> &filenames, const string &directory)
 {
@@ -115,7 +76,7 @@ int main(int argc, const char** argv)
 		return -1;
 	}
 	string folder = argv[1];
-	string folder_for_calculated = "E:\\infarction_foto\3\\changed_cut\\";
+	string folder_for_calculated = "";
 
 
 	vector<string> filenames1;
@@ -158,7 +119,7 @@ int main(int argc, const char** argv)
 		}
 		//cout << count_white << "infarction area" << "           " << endl;
 		
-		ofstream strm("E:\\infarction_foto\\123\\Группа 3\\опыт бактерии 15\\pixelsauto.txt", ios_base::app);
+		ofstream strm("", ios_base::app);
 		strm << count_white << "        " << "infarction area" << endl;
 		//strm << count_black << "           " << "healthy area" << endl;
 
